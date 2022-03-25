@@ -2,7 +2,13 @@ package com.example.firstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout two;
     LinearLayout layout_three;
     LinearLayout layout_four;
+    LinearLayout layout_0;
     Button button_login;
     Button button_logout;
     Button button_signup;
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
          layout_one=findViewById(R.id.layout_one);
+        layout_0=findViewById(R.id.layout_O);
          /* de meme pour
          layout_two=;
          layout_three;
@@ -44,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_login.setOnClickListener(this);
         button_logout.setOnClickListener(this);
         button_signup.setOnClickListener(this);
+
+
     }
     @Override
     public void onClick(View view) {
@@ -57,5 +67,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (view.getId()==R.id.button_signup){
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_one,menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId()==R.id.item_rouge){
+            layout_0.setBackgroundColor(Color.parseColor("#FFFB0303"));
+            return true;
+        }
+        else if (item.getItemId()==R.id.item_vert){
+            layout_0.setBackgroundColor(Color.parseColor("#FFA4FB03"));
+            return true;
+        }
+        else if (item.getItemId()==R.id.iem_jaune){
+            layout_0.setBackgroundColor(Color.parseColor("#FFFFEB3B"));
+            return true;
+        }
+        else if (item.getItemId()==R.id.item_info){
+            Intent myIntent= new Intent(this, InfoActivity.class);
+            startActivity(myIntent);
+        }
+
+        return true;
     }
 }
