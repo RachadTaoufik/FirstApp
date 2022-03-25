@@ -67,10 +67,10 @@
             android:layout_marginRight="10dp"
             style="@style/MaterialAlertDialog.Material3"/>
         <Button
-            android:id="@+id/button_singup"
+            android:id="@+id/button_signup"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Singup"
+            android:text="Signup"
             android:layout_marginLeft="10dp"
             style="@style/MaterialAlertDialog.Material3"/>/>
 
@@ -87,7 +87,7 @@
             android:id="@+id/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Singup"
+            android:text="LogOUt"
             android:layout_marginLeft="10dp"
             style="@style/MaterialAlertDialog.Material3"/>/>
 

@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout layout_four;
     Button button_login;
     Button button_logout;
-    Button button_singup;
+    Button button_signup;
     EditText edit_login;
     EditText edit_password;
     TextView text_state;
@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         button_login=findViewById(R.id.button_login);
         button_logout=findViewById(R.id.button_logout);
-        button_singup=findViewById(R.id.button_singup);
+        button_signup=findViewById(R.id.button_signup);
 
         button_login.setOnClickListener(this);
         button_logout.setOnClickListener(this);
-        button_singup.setOnClickListener(this);
+        button_signup.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if (view.getId()==R.id.button_logout){
 
         }
-        else if (view.getId()==R.id.button_singup){
+        else if (view.getId()==R.id.button_signup){
 
         }
     }
