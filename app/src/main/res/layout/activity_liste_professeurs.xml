@@ -9,15 +9,18 @@
     tools:context=".ListeProfesseursActivity">
 
     <EditText
+        android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:hint="Veuillez saisir votre requete"
    />
     <ListView
+        android:id="@+id/list_prof"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
