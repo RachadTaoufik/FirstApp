@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.firstapp.model.Professeur;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -72,6 +76,12 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                         }
 
                         hideProgressDialog();
+
+
+                        // Exercie: a Modifier en se basant sur BaseAdapter ==> vois la calsse MyAdapter
+                        //pour recuperer la photo a partir de Firebase
+                        //Ajouter les dependances Strorage: Utiliser l'Assistant Firebase de android Studio
+                        //Ajouter la librairie Glide : https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
                         ArrayList<String> noms_prof = new ArrayList<String>();
                         for (Professeur prof: profs){
                             noms_prof.add(prof.getNom());
@@ -110,4 +120,38 @@ public class ListeProfesseursActivity extends AppCompatActivity {
             mProgressDialog.dismiss();
         }
     }
+
+
+    private class MyAdapter extends BaseAdapter {
+
+        // override other abstract methods here
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = getLayoutInflater().inflate(R.layout.list_item, container, false);
+            }
+
+            ((TextView) convertView.findViewById(R.id.prof_textView).setText(getItem(position));
+            return convertView;
+        }
+    }
+
+
 }
+
