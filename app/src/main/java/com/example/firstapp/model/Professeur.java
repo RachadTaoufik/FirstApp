@@ -1,8 +1,9 @@
 package com.example.firstapp.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Professeur {
+public class Professeur implements Serializable {
     private String nom;
     private String prenom;
     private String tel;

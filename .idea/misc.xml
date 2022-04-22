@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_info.xml" value="0.17695770263671876" />
-        <entry key="app/src/main/res/layout/activity_liste_professeurs.xml" value="0.23852386474609377" />
+        <entry key="app/src/main/res/layout/activity_liste_professeurs.xml" value="0.22853601359207804" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_new_prof.xml" value="0.15489130434782608" />
+        <entry key="app/src/main/res/layout/activity_prof_detail.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.15489130434782608" />
+        <entry key="app/src/main/res/layout/professeur_datail.xml" value="0.14705882352941177" />
         <entry key="app/src/main/res/layout/simple_list_item_1.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_one.xml" value="0.10219879150390629" />
       </map>

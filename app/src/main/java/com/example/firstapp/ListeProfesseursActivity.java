@@ -2,18 +2,28 @@ package com.example.firstapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.firstapp.model.Professeur;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,11 +31,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class ListeProfesseursActivity extends AppCompatActivity {
+public class ListeProfesseursActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     LinkedList<Professeur> profs;
     EditText search;
@@ -46,6 +58,7 @@ public class ListeProfesseursActivity extends AppCompatActivity {
 
         search=findViewById(R.id.search);
         list_prof=findViewById((R.id.list_prof));
+        list_prof.setOnItemClickListener(this);
         fab=findViewById(R.id.add_prof);
 
         profs=new LinkedList<Professeur>();
@@ -78,13 +91,15 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                         hideProgressDialog();
 
 
-                        // Exercie: a Modifier en se basant sur BaseAdapter ==> vois la calsse MyAdapter
+                        // Exercice: a Modifier en se basant sur BaseAdapter ==> vois la calsse MyAdapter
                         //pour recuperer la photo a partir de Firebase
                         //Ajouter les dependances Strorage: Utiliser l'Assistant Firebase de android Studio
                         //Ajouter la librairie Glide : https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
+
+                       /*
                         ArrayList<String> noms_prof = new ArrayList<String>();
                         for (Professeur prof: profs){
-                            noms_prof.add(prof.getNom());
+                            noms_prof.add(prof.getPrenom()+" "+prof.getNom());
                         }
 
                         // This is the array adapter, it takes the context of the activity as a
@@ -92,8 +107,10 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                         // array as a third parameter.
                         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ListeProfesseursActivity.this,android.R.layout.simple_list_item_1,noms_prof );
                         list_prof.setAdapter(arrayAdapter);
+                        */
 
-
+                        ListAdapter myadapter= new MyAdapter();
+                        list_prof.setAdapter(myadapter);
                     }
                 });
 
@@ -101,9 +118,6 @@ public class ListeProfesseursActivity extends AppCompatActivity {
 
 
     }
-
-
-
 
     public void showProgressDialog() {
         if (mProgressDialog == null) {
@@ -121,19 +135,25 @@ public class ListeProfesseursActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        Intent myIntent= new Intent(this, ProfDetailActivity.class);
+        myIntent.putExtra("professeur",profs.get(i));
+        startActivity(myIntent);
+    }
+
 
     private class MyAdapter extends BaseAdapter {
 
-        // override other abstract methods here
-
         @Override
         public int getCount() {
-            return 0;
+            return profs.size();
         }
 
         @Override
-        public Object getItem(int i) {
-            return null;
+        public Professeur getItem(int i) {
+            return profs.get(i);
         }
 
         @Override
@@ -147,10 +167,33 @@ public class ListeProfesseursActivity extends AppCompatActivity {
                 convertView = getLayoutInflater().inflate(R.layout.list_item, container, false);
             }
 
-            ((TextView) convertView.findViewById(R.id.prof_textView).setText(getItem(position));
+            ((TextView) convertView.findViewById(R.id.prof_nom))
+                    .setText(getItem(position).getPrenom()+" "+getItem(position).getNom());
+
+            ((TextView) convertView.findViewById(R.id.prof_dep))
+                    .setText("Departement "+getItem(position).getDepartement());
+
+
+
+            // Reference to an image file in Cloud Storage
+            //StorageReference storageReference = FirebaseStorage.getInstance().getReference(getItem(position).getPhoto());
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(getItem(position).getPhoto());
+
+            // Download directly from StorageReference using Glide
+            // (See MyAppGlideModule for Loader registration)
+
+
+            Glide.with(ListeProfesseursActivity.this)
+                    .load(storageReference)
+                    .override(70, 70)
+                    .into(((ImageView) convertView.findViewById(R.id.prof_photo)));
+
             return convertView;
         }
     }
+
+
+
 
 
 }

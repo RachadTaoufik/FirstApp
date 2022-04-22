@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstApp">
         <activity
+            android:name=".EtudiantDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListeEtudiantAcivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
