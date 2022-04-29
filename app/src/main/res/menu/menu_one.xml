@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="Info" android:id="@+id/item_info"/>
-    <item android:title="Aide" android:id="@+id/item_aide"/>
-    <item android:title="FAQ" android:id="@+id/item_faq"/>
+    <item android:title="Professeurs" android:id="@+id/item_prof"/>
+    <item android:title="Etudiants" android:id="@+id/item_etude"/>
     <item android:title="Theme">
         <menu>
             <item android:title="Rouge" android:id="@+id/item_rouge"/>

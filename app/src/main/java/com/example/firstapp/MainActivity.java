@@ -93,6 +93,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent myIntent= new Intent(this, InfoActivity.class);
             startActivity(myIntent);
         }
+        else if (item.getItemId()==R.id.item_prof){
+            Intent myIntent= new Intent(this, ListeProfesseursActivity.class);
+            startActivity(myIntent);
+        }
+        else if (item.getItemId()==R.id.item_etude){
+            Intent myIntent= new Intent(this, ListeEtudiantAcivity.class);
+            startActivity(myIntent);
+        }
 
         return true;
     }

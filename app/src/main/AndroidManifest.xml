@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstApp">
         <activity
+            android:name=".AjouterProfActivity"
+            android:exported="false" />
+        <activity
             android:name=".EtudiantDetailActivity"
             android:exported="false" />
         <activity
